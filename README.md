@@ -20,17 +20,17 @@
 
 ## items テーブル
 
-| Column             | Type   | Options     |
-| ------------------ | ------ | ----------- |
-| item_name          | string | null: false |
-| item_version       | text   | null: false |
-| category_id        | integer| null: false |
-| item_status_id     | integer| null: false |
-| delivary_charge_id | integer| null: false |
-| consignor_area_id  | integer| null: false |
-| days_ship_id       | integer| null: false |
-| cost               | integer| null: false |
-
+| Column             | Type       | Options                        |
+| ------------------ | ---------- | ------------------------------ |
+| item_name          | string     | null: false                    |
+| item_version       | text       | null: false                    |
+| category_id        | integer    | null: false                    |
+| item_status_id     | integer    | null: false                    |
+| delivary_charge_id | integer    | null: false                    |
+| consignor_area_id  | integer    | null: false                    |
+| days_ship_id       | integer    | null: false                    |
+| cost               | integer    | null: false                    |
+| user               | references | null: false, foreign_key: true |
 ### Association
 
 
@@ -39,28 +39,28 @@
 
 
 ## ordars テーブル
-| item_id      | string | null: false, foreign_key: true       |
-| user_id      | string | null: false, foreign_key: true       |
+| item     | references | null: false, foreign_key: true       |
+| user     | references | null: false, foreign_key: true       |
 
 
 
 ### Association
 
-- belongs_to :ship
+- has_one    :ship
 - belongs_to :user
 - belongs_to :item
 
 ## ships テーブル
 
-| Column             | Type   | Options     |
-| ------------------ | ------ | ----------- |
-| post_code          | string | null: false |
-| consignor_area_id  | integer| null: false |
-| shikuchoson        | string | null: false |
-| banchi             | string | null: false |
-| build_name         | string |             |
-| phone_number       | string | null: false |
-
+| Column             | Type       | Options                             |
+| ------------------ | ---------- | ----------------------------------- |
+| post_code          | string     | null: false                         |
+| consignor_area_id  | integer    | null: false                         |
+| shikuchoson        | string     | null: false                         |
+| banchi             | string     | null: false                         |
+| build_name         | string     |                                     |
+| phone_number       | string     | null: false                         |
+| ordar              | references | null: false, foreign_key: true      |
 ### Association
 
 - belongs_to :ordar
