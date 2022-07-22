@@ -98,6 +98,16 @@ RSpec.describe User, type: :model do
         @user.valid?
         expect(@user.errors.full_messages).to include('Family kana is invalid', 'First kana is invalid')
       end
+       it '英字のみのパスワードでは登録できない' do
+        @user.password = 'aaaaaa'
+        @user.valid?
+        expect(@user.errors.full_messages).to include("Password confirmation doesn't match Password", "Password is invalid")
+      end
+       it '数字のみのパスワードでは登録できない' do
+        @user.password = '111111'
+        @user.valid?
+        expect(@user.errors.full_messages).to include("Password confirmation doesn't match Password", "Password is invalid")
+      end
     end
   end
 end
