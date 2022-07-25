@@ -41,7 +41,6 @@ ActiveRecord::Schema.define(version: 2022_07_22_083936) do
     t.integer "delivary_charge_id", null: false
     t.integer "consignor_area_id", null: false
     t.integer "days_ship_id", null: false
-    t.integer "delivary_charge", null: false
     t.integer "cost", null: false
     t.bigint "user_id", null: false
     t.datetime "created_at", precision: 6, null: false
