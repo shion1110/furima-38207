@@ -8,6 +8,8 @@ FactoryBot.define do
     first_kanji { '太郎' }
     family_kana { 'ヤマダ' }
     first_kana { 'タロウ' }
-    birth_day  { '1980-01-01' }
+    birth_day  { '1980-01-01' } 
+    
+    extend ActiveHash::Associations::ActiveRecordExtensions
   end
 end

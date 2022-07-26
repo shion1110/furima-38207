@@ -15,5 +15,6 @@ class Item < ApplicationRecord
   belongs_to :days_ship
   belongs_to :delivary_charge
   belongs_to :item_status
-
+  belongs_to :user
+ 
 end
