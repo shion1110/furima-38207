@@ -1,6 +1,6 @@
 FactoryBot.define do
   factory :item do
-    image { Faker::Lorem.sentence }
+   
     association :user
     item_name { 'ご飯' }
     item_status_id { '2' }
@@ -15,6 +15,6 @@ FactoryBot.define do
       item.image.attach(io: File.open('public/images/test_image.png'), filename: 'test_image.png')
     end
 
-    extend ActiveHash::Associations::ActiveRecordExtensions
+   
   end
 end

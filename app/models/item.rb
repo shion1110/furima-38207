@@ -8,7 +8,7 @@ class Item < ApplicationRecord
   validates :delivary_charge_id, presence: true, numericality: { other_than: 1 }
   validates :consignor_area_id, presence: true, numericality: { other_than: 1 }
   validates :days_ship_id, presence: true, numericality: { other_than: 1 }
-  validates :cost, presence: true
+  validates :cost, presence: true, format: { with: /\A[0-9]+\z/ }, numericality: { only_integer: true, greater_than_or_equal_to: 300, less_than_or_equal_to: 9999999}
   extend ActiveHash::Associations::ActiveRecordExtensions
   belongs_to :category
   belongs_to :consignor_area

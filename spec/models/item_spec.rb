@@ -56,6 +56,22 @@ RSpec.describe Item, type: :model do
         @item.valid?
         expect(@item.errors.full_messages).to include("Cost can't be blank")
       end
+      it '価格に半角数字以外が含まれている場合は出品できない' do
+        @item.cost = '1あ'
+        @item.valid?
+        expect(@item.errors.full_messages).to include("Cost is not a number")
+      end
+      it '価格が300円未満では出品できない' do
+        @item.cost = 277
+        @item.valid?
+        expect(@item.errors.full_messages).to include("Cost must be greater than or equal to 300")
+      end
+      it '価格が9_999_999円を超えると出品できない' do
+        @item.cost = 100000000
+        @item.valid?
+        expect(@item.errors.full_messages).to include("Cost must be less than or equal to 9999999")
+      end
+      
     end
   end
 end
