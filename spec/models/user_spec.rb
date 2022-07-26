@@ -94,20 +94,20 @@ RSpec.describe User, type: :model do
         @user.valid?
         expect(@user.errors.full_messages).to include('First kana is invalid')
       end
-       it '英字のみのパスワードでは登録できない' do
+      it '英字のみのパスワードでは登録できない' do
         @user.password = 'aaaaaa'
         @user.valid?
-        expect(@user.errors.full_messages).to include("Password confirmation doesn't match Password", "Password is invalid")
+        expect(@user.errors.full_messages).to include("Password confirmation doesn't match Password", 'Password is invalid')
       end
-       it '数字のみのパスワードでは登録できない' do
+      it '数字のみのパスワードでは登録できない' do
         @user.password = '111111'
         @user.valid?
-        expect(@user.errors.full_messages).to include("Password confirmation doesn't match Password", "Password is invalid")
+        expect(@user.errors.full_messages).to include("Password confirmation doesn't match Password", 'Password is invalid')
       end
-       it 'パスワードは全角英数混合では登録できない' do
+      it 'パスワードは全角英数混合では登録できない' do
         @user.password = 'q1q1q1'
         @user.valid?
-        expect(@user.errors.full_messages).to include("Password confirmation doesn't match Password")    
+        expect(@user.errors.full_messages).to include("Password confirmation doesn't match Password")
       end
     end
   end
