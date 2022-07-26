@@ -10,6 +10,6 @@ FactoryBot.define do
     first_kana { 'タロウ' }
     birth_day  { '1980-01-01' }
 
-    extend ActiveHash::Associations::ActiveRecordExtensions
+    
   end
 end
