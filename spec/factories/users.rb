@@ -9,7 +9,5 @@ FactoryBot.define do
     family_kana { 'ヤマダ' }
     first_kana { 'タロウ' }
     birth_day  { '1980-01-01' }
-
-    
   end
 end

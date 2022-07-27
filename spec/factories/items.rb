@@ -1,6 +1,5 @@
 FactoryBot.define do
   factory :item do
-   
     association :user
     item_name { 'ご飯' }
     item_status_id { '2' }
@@ -14,7 +13,5 @@ FactoryBot.define do
     after(:build) do |item|
       item.image.attach(io: File.open('public/images/test_image.png'), filename: 'test_image.png')
     end
-
-   
   end
 end
