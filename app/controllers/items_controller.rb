@@ -3,7 +3,6 @@ class ItemsController < ApplicationController
   before_action :set_item, only: [:show, :update, :edit, :destroy]
   before_action :contributor_confirmation, only: [:edit, :update, :destroy]
   def index
-    
     @items = Item.order(created_at: :DESC)
   end
 
@@ -23,7 +22,7 @@ class ItemsController < ApplicationController
   def show
   end
 
-  def edit 
+  def edit
   end
 
   def update
@@ -33,18 +32,15 @@ class ItemsController < ApplicationController
       render :edit
     end
   end
-  
-  def destroy  
+
+  def destroy
     if current_user.id == @item.user_id
-       @item.destroy
-      redirect_to root_path 
+      @item.destroy
+      redirect_to root_path
     else
       render :show
     end
-  end 
-  
-
-
+  end
 
   private
 
