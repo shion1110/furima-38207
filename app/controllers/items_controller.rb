@@ -23,6 +23,11 @@ class ItemsController < ApplicationController
   end
 
   def edit
+    if user_signed_in? && current_user.id != @item.user.id
+      redirect_to root_path
+    elsif @item.order.present?
+      redirect_to root_path
+    end
   end
 
   def update
@@ -54,6 +59,7 @@ class ItemsController < ApplicationController
   end
 
   def contributor_confirmation
-    redirect_to root_path unless @item.user == current_user
+    redirect_to root_path unless @item.user == current_user || @item.order.blank?
+    # 売却済み商品 ⇨ 「@itemに紐づく購入履歴モデルの中身が存在すれば」
   end
 end
