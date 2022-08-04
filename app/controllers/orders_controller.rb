@@ -1,18 +1,12 @@
 class OrdersController < ApplicationController
   before_action :authenticate_user!, only: [:index]
+  before_action :set_item, only: [:index, :create]
   def index
-    @item = Item.find(params[:item_id])
     @order_ship = OrderShip.new
     redirect_to root_path unless @item.user == current_user || @item.order.blank?
-    if current_user.id == @item.user_id
-      redirect_to root_path
-    else
-      render :index
-    end
   end
 
   def create
-    @item = Item.find(params[:item_id])
     @order_ship = OrderShip.new(order_params)
     if @order_ship.valid?
       pay_item
@@ -32,11 +26,15 @@ class OrdersController < ApplicationController
   end
 
   def pay_item
-    Payjp.api_key = 'sk_test_884d0b6aae16e2fde6e345fb'
+    Payjp.api_key = '秘密鍵'
     Payjp::Charge.create(
       amount: @item.cost,
       card: order_params[:token],
       currency: 'jpy'
     )
+  end
+
+  def set_item
+    @item = Item.find(params[:item_id])
   end
 end

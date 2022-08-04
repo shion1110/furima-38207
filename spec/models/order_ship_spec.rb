@@ -56,9 +56,34 @@ RSpec.describe OrderShip, type: :model do
         expect(@order_ship.errors.full_messages).to include('Post code is invalid. Include hyphen(-)')
       end
       it 'Phone numberが10桁以上11桁以上の半角数値じゃなきゃ購入できない' do
-        @order_ship.phone_number = '３３'
+        @order_ship.phone_number = '１２３'
         @order_ship.valid?
         expect(@order_ship.errors.full_messages).to include('Phone number PhoneNumber must be 10or11 digit Half-width numbers')
+      end
+      it 'Phone numberが9桁以下では購入できない' do
+        @order_ship.phone_number = '123456'
+        @order_ship.valid?
+        expect(@order_ship.errors.full_messages).to include('Phone number PhoneNumber must be 10or11 digit Half-width numbers')
+      end
+      it 'Phone numberが12桁以上では購入できない' do
+        @order_ship.phone_number = '1234566666666'
+        @order_ship.valid?
+        expect(@order_ship.errors.full_messages).to include('Phone number PhoneNumber must be 10or11 digit Half-width numbers')
+      end
+      it 'Phone numberに半角数字以外が含まれている場合は購入できない（※半角数字以外が一文字でも含まれていれば良い）' do
+        @order_ship.phone_number = '1234２3４'
+        @order_ship.valid?
+        expect(@order_ship.errors.full_messages).to include('Phone number PhoneNumber must be 10or11 digit Half-width numbers')
+      end
+      it 'userが紐付いていなければ購入できない' do
+        @order_ship.user_id = nil
+        @order_ship.valid?
+        expect(@order_ship.errors.full_messages).to include("User can't be blank")
+      end
+      it 'itemが紐付いていなければ購入できない' do
+        @order_ship.item_id = nil
+        @order_ship.valid?
+        expect(@order_ship.errors.full_messages).to include("Item can't be blank")
       end
     end
   end
