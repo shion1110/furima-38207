@@ -3,13 +3,9 @@ class OrdersController < ApplicationController
   before_action :set_item, only: [:index, :create]
   def index
     @order_ship = OrderShip.new
-  if  @item.user == current_user
+  if  @item.user.id == current_user.id || @item.order.present?
     redirect_to root_path
   end
-
-  if @item.order.blank?
-
-    redirect_to root_path
   end
 
   def create
