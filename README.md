@@ -16,7 +16,7 @@
 ### Association
 
 - has_many :items
-- has_many :ordars
+- has_many :orders
 
 ## items テーブル
 
@@ -34,11 +34,11 @@
 ### Association
 
 
-- has_one :ordar
+- has_one :order
 - belongs_to :user
 
 
-## ordars テーブル
+## orders テーブル
 | item     | references | null: false, foreign_key: true       |
 | user     | references | null: false, foreign_key: true       |
 
@@ -60,7 +60,7 @@
 | banchi             | string     | null: false                         |
 | build_name         | string     |                                     |
 | phone_number       | string     | null: false                         |
-| ordar              | references | null: false, foreign_key: true      |
+| order              | references | null: false, foreign_key: true      |
 ### Association
 
-- belongs_to :ordar
+- belongs_to :order
