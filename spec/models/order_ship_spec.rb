@@ -25,9 +25,9 @@ RSpec.describe OrderShip, type: :model do
         expect(@order_ship.errors.full_messages).to include('Post code is invalid. Include hyphen(-)')
       end
       it 'consignor_areaが空だと購入できない' do
-        @order_ship.consignor_area_id = ''
+        @order_ship.consignor_area_id = 1
         @order_ship.valid?
-        expect(@order_ship.errors.full_messages).to include('Consignor area is not a number')
+        expect(@order_ship.errors.full_messages).to include("Consignor area must be other than 1")
       end
       it 'shikuchosonが空だと購入できない' do
         @order_ship.shikuchoson = ''
@@ -85,6 +85,7 @@ RSpec.describe OrderShip, type: :model do
         @order_ship.valid?
         expect(@order_ship.errors.full_messages).to include("Item can't be blank")
       end
+
     end
   end
 end

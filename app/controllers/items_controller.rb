@@ -1,7 +1,7 @@
 class ItemsController < ApplicationController
   before_action :authenticate_user!, except: [:index, :show]
   before_action :set_item, only: [:show, :update, :edit, :destroy]
-  before_action :contributor_confirmation, only: [:edit, :update, :destroy]
+
   def index
     @items = Item.order(created_at: :DESC)
   end
@@ -58,8 +58,5 @@ class ItemsController < ApplicationController
     @item = Item.find(params[:id])
   end
 
-  def contributor_confirmation
-    redirect_to root_path unless @item.user == current_user || @item.order.blank?
-    # 売却済み商品 ⇨ 「@itemに紐づく購入履歴モデルの中身が存在すれば」
-  end
+ 
 end

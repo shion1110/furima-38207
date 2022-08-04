@@ -3,7 +3,13 @@ class OrdersController < ApplicationController
   before_action :set_item, only: [:index, :create]
   def index
     @order_ship = OrderShip.new
-    redirect_to root_path unless @item.user == current_user || @item.order.blank?
+  if  @item.user == current_user
+    redirect_to root_path
+  end
+
+  if @item.order.blank?
+
+    redirect_to root_path
   end
 
   def create
@@ -26,7 +32,7 @@ class OrdersController < ApplicationController
   end
 
   def pay_item
-    Payjp.api_key = '秘密鍵'
+    Payjp.api_key =  ENV["PAYJP_SECRET_KEY"]
     Payjp::Charge.create(
       amount: @item.cost,
       card: order_params[:token],
