@@ -55,11 +55,7 @@ RSpec.describe OrderShip, type: :model do
         @order_ship.valid?
         expect(@order_ship.errors.full_messages).to include('Post code is invalid. Include hyphen(-)')
       end
-      it 'Phone numberが10桁以上11桁以上の半角数値じゃなきゃ購入できない' do
-        @order_ship.phone_number = '１２３'
-        @order_ship.valid?
-        expect(@order_ship.errors.full_messages).to include('Phone number PhoneNumber must be 10or11 digit Half-width numbers')
-      end
+     
       it 'Phone numberが9桁以下では購入できない' do
         @order_ship.phone_number = '123456'
         @order_ship.valid?
