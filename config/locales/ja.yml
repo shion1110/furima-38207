@@ -1,0 +1,33 @@
+ja:
+  activerecord:
+    attributes:
+      user:
+        nickname: ニックネーム
+        family_kanji: 苗字
+        first_kanji: 名前
+        family_kana: 苗字カナ(全角)
+        first_kana: 名前カナ(全角)
+        birth_day: 誕生日 
+        
+      item:
+        image: 画像
+        item_name: 商品名
+        item_version: 商品の説明
+        category_id: カテゴリー
+        item_status_id: 商品状態
+        consignor_area_id: 発送元の地域
+        days_ship_id: 発送までの日数
+        cost: 価格
+        delivary_charge_id: 配送料の負担
+        
+  activemodel:
+    attributes:
+      order_ship:
+        consignor_area_id: 都道府県
+        shikuchoson: 市区町村
+        banchi: 番地
+        post_code: 郵便番号
+        phone_number: 電話番号
+        token: クレジットカード情報
+
+

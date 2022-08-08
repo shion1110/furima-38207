@@ -6,11 +6,11 @@ class OrderShip
   validates :consignor_area_id, numericality: { other_than: 1 }
 
   with_options presence: true do
-    validates :post_code, format: { with: /\A[0-9]{3}-[0-9]{4}\z/, message: 'is invalid. Include hyphen(-)' }
+    validates :post_code, format: { with: /\A[0-9]{3}-[0-9]{4}\z/ }
     validates :shikuchoson
     validates :banchi
     validates :phone_number,
-              format: { with: /\A\d{10,11}\z/, message: 'PhoneNumber must be 10or11 digit Half-width numbers' }
+              format: { with: /\A\d{10,11}\z/}
     validates :item_id
     validates :user_id
     validates :token

@@ -22,7 +22,7 @@ RSpec.describe OrderShip, type: :model do
       it 'post_codeが空だと購入できない' do
         @order_ship.post_code = ''
         @order_ship.valid?
-        expect(@order_ship.errors.full_messages).to include('Post code is invalid. Include hyphen(-)')
+        expect(@order_ship.errors.full_messages).to include("Post code can't be blank", "Post code is invalid. Include hyphen(-)")
       end
       it 'consignor_areaが空だと購入できない' do
         @order_ship.consignor_area_id = 1
@@ -42,7 +42,7 @@ RSpec.describe OrderShip, type: :model do
       it 'phone_numberが空だと購入できない' do
         @order_ship.phone_number = ''
         @order_ship.valid?
-        expect(@order_ship.errors.full_messages).to include("Phone number can't be blank")
+        expect(@order_ship.errors.full_messages).to include("Phone number can't be blank", "Phone number PhoneNumber must be 10or11 digit Half-width numbers")
       end
       it 'tokenが空だと購入できない' do
         @order_ship.token = ''
@@ -85,3 +85,4 @@ RSpec.describe OrderShip, type: :model do
     end
   end
 end
+
